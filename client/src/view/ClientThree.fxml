@@ -4,13 +4,29 @@
 <?import javafx.scene.control.Label?>
 <?import javafx.scene.control.TextArea?>
 <?import javafx.scene.control.TextField?>
+<?import javafx.scene.image.Image?>
+<?import javafx.scene.image.ImageView?>
 <?import javafx.scene.layout.AnchorPane?>
+<?import javafx.scene.text.Font?>
 
 <AnchorPane fx:id="loginAnchorPane" prefHeight="500.0" prefWidth="400.0" xmlns="http://javafx.com/javafx/8.0.171" xmlns:fx="http://javafx.com/fxml/1" fx:controller="controller.ClientThreeController">
    <children>
-      <Label layoutX="187.0" layoutY="21.0" text="Client : Three" />
-      <TextArea layoutX="40.0" layoutY="52.0" prefHeight="328.0" prefWidth="391.0" />
-      <TextField fx:id="txtMesssage" layoutX="55.0" layoutY="401.0" prefHeight="25.0" prefWidth="315.0" />
-      <Button layoutX="402.0" layoutY="401.0" mnemonicParsing="false" onAction="#saveButton" prefHeight="25.0" prefWidth="70.0" text="Save" />
+      <ImageView fitHeight="443.0" fitWidth="472.0" layoutY="58.0" opacity="0.4" pickOnBounds="true">
+         <image>
+            <Image url="@../assets/CTS-black.jpg" />
+         </image>
+      </ImageView>
+      <TextArea fx:id="txtAria" layoutX="40.0" layoutY="70.0" prefHeight="310.0" prefWidth="391.0" />
+      <TextField fx:id="txtMesssage" layoutX="42.0" layoutY="401.0" prefHeight="25.0" prefWidth="305.0" />
+      <Button layoutX="364.0" layoutY="401.0" mnemonicParsing="false" onAction="#saveButton" prefHeight="25.0" prefWidth="70.0" style="-fx-background-color: #22933f;" text="Send" textFill="WHITE" />
+      <ImageView fitHeight="58.0" fitWidth="472.0" pickOnBounds="true">
+         <image>
+            <Image url="@../assets/throught.jpg" />
+         </image>
+      </ImageView>
+      <Label layoutX="23.0" layoutY="15.0" text="Nimal" textFill="#fcfcfc">
+         <font>
+            <Font name="Berlin Sans FB" size="25.0" />
+         </font></Label>
    </children>
 </AnchorPane>

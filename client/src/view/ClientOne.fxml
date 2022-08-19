@@ -17,8 +17,6 @@
             <Image url="@../assets/CTS-black.jpg" />
          </image>
       </ImageView>
-      <TextField fx:id="txtMessage" layoutX="118.0" layoutY="330.0" prefHeight="25.0" prefWidth="229.0" />
-      <Button layoutX="385.0" layoutY="330.0" mnemonicParsing="false" onAction="#saveonAction" prefHeight="25.0" prefWidth="76.0" style="-fx-background-color: #903030;" text="Save" textFill="WHITE" />
       <ImageView fitHeight="49.0" fitWidth="549.0" pickOnBounds="true">
          <image>
             <Image url="@../assets/green.jpg" />
@@ -34,5 +32,8 @@
             <Cursor fx:constant="HAND" />
          </cursor>
       </ImageView>
+      <Button layoutX="39.0" layoutY="330.0" mnemonicParsing="false" onAction="#imageOnAction" text="Image" />
+      <Button layoutX="380.0" layoutY="330.0" mnemonicParsing="false" onAction="#saveonAction" prefHeight="25.0" prefWidth="83.0" text="Save" />
+      <TextField fx:id="txtMessage" layoutX="118.0" layoutY="330.0" prefHeight="25.0" prefWidth="249.0" />
    </children>
 </AnchorPane>

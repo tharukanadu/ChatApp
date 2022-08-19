@@ -6,9 +6,8 @@ import javafx.scene.control.TextArea;
 import javafx.scene.control.TextField;
 import javafx.scene.layout.AnchorPane;
 
-import java.io.DataInputStream;
-import java.io.DataOutputStream;
-import java.io.IOException;
+import javax.swing.*;
+import java.io.*;
 import java.net.Socket;
 import java.net.URL;
 import java.util.ResourceBundle;
@@ -21,36 +20,44 @@ public class ClientThreeController implements Initializable {
     static DataOutputStream dataOutputStream;
     public TextArea txtAria;
 
+    private BufferedReader bufferedReader;
     String messageIn = "";
     @Override
     public void initialize(URL location, ResourceBundle resources) {
         new Thread(new Runnable() {
             @Override
             public void run() {
+
                 try {
-                    socket=new Socket("localhost",5000);
-                    dataInputStream=new DataInputStream(socket.getInputStream());
-                    dataOutputStream=new DataOutputStream(socket.getOutputStream());
+                    socket = new Socket("localhost", 5000);
+                    InputStreamReader inputStreamReader = new InputStreamReader(socket.getInputStream());
+                    bufferedReader = new BufferedReader(inputStreamReader);
+                    String record = bufferedReader.readLine();
 
-
-
-                    while (!messageIn.equals("end")){
-                        messageIn=dataInputStream.readUTF();
-                        txtAria.appendText("\nServer :"+messageIn.trim()+"\n");
+                    while (!record.equals("Exit")) {
+                        record = bufferedReader.readLine();
+                        txtAria.appendText("\nServer :" + record.trim() + "\n");
                     }
                 } catch (IOException e) {
                     throw new RuntimeException(e);
                 }
+
             }
         }).start();
     }
 
     public void saveButton(ActionEvent actionEvent) throws IOException {
-        String reply = "";
-        reply=txtMesssage.getText();
-        txtAria.appendText(("\n\n\t\t\t\t\t\t\t\t\t\t\t\tThree:" +reply.trim()));
-        dataOutputStream.writeUTF(reply);
+
+        PrintWriter printWriter = new PrintWriter(socket.getOutputStream());
+        printWriter.println(txtMesssage.getText());
+        txtAria.appendText("\n\n\t\t\t\t\t\t\t\t\t\t\t\tServer :" + txtMesssage.getText());
+        printWriter.flush();
         txtMesssage.setText("");
 
+    }
+
+    public void LoadOnAction(ActionEvent actionEvent) {
+        JFileChooser jFileChooser = new JFileChooser();
+        int response = jFileChooser.showOpenDialog(null);
     }
 }

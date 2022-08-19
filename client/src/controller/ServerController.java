@@ -5,10 +5,10 @@ import javafx.scene.control.TextArea;
 import javafx.scene.control.TextField;
 import javafx.scene.layout.AnchorPane;
 
-import java.io.BufferedReader;
-import java.io.IOException;
-import java.io.InputStreamReader;
-import java.io.PrintWriter;
+import javax.imageio.ImageIO;
+import javax.swing.*;
+import java.awt.image.BufferedImage;
+import java.io.*;
 import java.net.ServerSocket;
 import java.net.Socket;
 
@@ -18,6 +18,7 @@ public class ServerController {
     public TextField textMessage;
     Socket accept = null;
     BufferedReader bufferedReader;
+    private Socket socket;
 
 
     public void initialize() {
@@ -45,8 +46,8 @@ public class ServerController {
     public void sendOnAction(ActionEvent actionEvent) throws IOException {
         PrintWriter printWriter = new PrintWriter(accept.getOutputStream());
         printWriter.println(textMessage.getText());
-        messageArea.appendText("\n\n\t\t\t\t\t\t\t\t\t\t\t\tServer :" + textMessage.getText());
-        textMessage.setText("");
+        messageArea.appendText("\n\n\t\t\t\t\t\t\t\t\tServer :" + textMessage.getText());
         printWriter.flush();
+        textMessage.setText("");
     }
 }

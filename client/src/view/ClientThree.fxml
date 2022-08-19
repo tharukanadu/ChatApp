@@ -17,8 +17,8 @@
          </image>
       </ImageView>
       <TextArea fx:id="txtAria" layoutX="40.0" layoutY="70.0" prefHeight="310.0" prefWidth="391.0" />
-      <TextField fx:id="txtMesssage" layoutX="42.0" layoutY="401.0" prefHeight="25.0" prefWidth="305.0" />
-      <Button layoutX="364.0" layoutY="401.0" mnemonicParsing="false" onAction="#saveButton" prefHeight="25.0" prefWidth="70.0" style="-fx-background-color: #22933f;" text="Send" textFill="WHITE" />
+      <TextField fx:id="txtMesssage" layoutX="42.0" layoutY="401.0" prefHeight="25.0" prefWidth="292.0" />
+      <Button layoutX="370.0" layoutY="401.0" mnemonicParsing="false" onAction="#saveButton" prefHeight="25.0" prefWidth="70.0" style="-fx-background-color: #22933f;" text="Send" textFill="WHITE" />
       <ImageView fitHeight="58.0" fitWidth="472.0" pickOnBounds="true">
          <image>
             <Image url="@../assets/throught.jpg" />
@@ -28,5 +28,6 @@
          <font>
             <Font name="Berlin Sans FB" size="25.0" />
          </font></Label>
+      <Button layoutX="337.0" layoutY="401.0" mnemonicParsing="false" onAction="#LoadOnAction" prefHeight="25.0" prefWidth="29.0" style="-fx-background-color: #5dced0;" text="\@" />
    </children>
 </AnchorPane>

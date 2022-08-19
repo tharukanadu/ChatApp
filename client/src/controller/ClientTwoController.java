@@ -6,9 +6,8 @@ import javafx.scene.control.TextArea;
 import javafx.scene.control.TextField;
 import javafx.scene.layout.AnchorPane;
 
-import java.io.DataInputStream;
-import java.io.DataOutputStream;
-import java.io.IOException;
+import javax.swing.*;
+import java.io.*;
 import java.net.Socket;
 import java.net.URL;
 import java.util.ResourceBundle;
@@ -21,36 +20,50 @@ public class ClientTwoController implements Initializable {
     static DataInputStream dataInputStream;
     static DataOutputStream dataOutputStream;
 
-    String messageIn = "";
+    private BufferedReader bufferedReader;
+
+
     @Override
     public void initialize(URL location, ResourceBundle resources) {
         new Thread(new Runnable() {
             @Override
             public void run() {
+
                 try {
-                    socket=new Socket("localhost",5000);
-                    dataInputStream=new DataInputStream(socket.getInputStream());
-                    dataOutputStream=new DataOutputStream(socket.getOutputStream());
+                    socket = new Socket("localhost", 5000);
+                    InputStreamReader inputStreamReader = new InputStreamReader(socket.getInputStream());
+                    bufferedReader = new BufferedReader(inputStreamReader);
+                    String record = bufferedReader.readLine();
 
-
-
-                    while (!messageIn.equals("end")){
-                        messageIn=dataInputStream.readUTF();
-                        textAria.appendText("\nServer :"+messageIn.trim()+"\n");
+                    while (!record.equals("Exit")) {
+                        record = bufferedReader.readLine();
+                        textAria.appendText("\nServer :" + record.trim() + "\n");
                     }
                 } catch (IOException e) {
                     throw new RuntimeException(e);
                 }
+
+
             }
         }).start();
+
+
+
     }
 
 
     public void SaveBtn(ActionEvent actionEvent) throws IOException {
-        String reply = "";
-        reply=txtMessage.getText();
-        textAria.appendText(("\n\n\t\t\t\t\t\t\t\t\t\t\t\tTwo:" +reply.trim()));
-        dataOutputStream.writeUTF(reply);
-        txtMessage.setText("");
+
+        PrintWriter printWriter = new PrintWriter(socket.getOutputStream());
+        printWriter.println(txtMessage.getText());
+        System.out.println("Client Writer :" + printWriter);
+        textAria.appendText("\n\n\t\t\t\t\t\t\t\tClient :" + txtMessage.getText());
+        printWriter.flush();
+
+    }
+
+    public void LoadOnAction(ActionEvent actionEvent) {
+        JFileChooser jFileChooser = new JFileChooser();
+        int response = jFileChooser.showOpenDialog(null);
     }
 }
